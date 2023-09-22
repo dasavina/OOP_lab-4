@@ -1,7 +1,7 @@
 ﻿class Doctor
 {
-    string name { get; set; } = "none";
-    string surname { get; set; } = "none";
+    public string name { get; set; } = "none";
+    public string surname { get; set; } = "none";
     public List<Patient> patients { get; set; }
 
     public string GetPatients()

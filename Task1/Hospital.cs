@@ -46,4 +46,28 @@
         { Console.WriteLine("no space left"); }
 
     }
+
+    public List<Patient> output(string[] parameters)
+    {
+        List<Patient> output = new List<Patient>();
+        if (parameters.Length==1)
+        {
+            Department forOutput = departments.Find(x => x.Name.Equals(parameters[0]));
+           for (int i = 0; i < forOutput.rooms.Count(); i++)
+            {
+                output.AddRange(forOutput.fromRoom(i));
+            }
+        }
+        else if (parameters[1].All(char.IsDigit))
+        {
+            Department forOutput = departments.Find(x => x.Name.Equals(parameters[0]));
+            output.AddRange(forOutput.fromRoom(Convert.ToInt32(parameters[1]) ));
+        }
+        else
+        {
+            Doctor forOutput = doctors.Find(x => x.name.Equals(parameters[0]) && x.surname.Equals(parameters[1]));
+            output.AddRange(forOutput.patients);
+        }
+        return output;
+    }
 }
