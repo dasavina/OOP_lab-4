@@ -1,6 +1,12 @@
-﻿class Department
+﻿using System.Xml.Linq;
+
+class Department
 {
-    public string Name { get; set; } = "none";
+    public string Name
+    {
+        get { return Name; }
+        set { if (value.Length > 20) { Name = value.Substring(0, 20); } else { Name = value; } }
+    }
     public List<Room> rooms { get; set; } = new List<Room>(0);
 
     public bool canFit()

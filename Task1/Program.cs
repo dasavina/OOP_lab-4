@@ -7,8 +7,11 @@ while(true)
         case ("End"): Environment.Exit(0); break;
         case "Output":
             {
-               string output = Console.ReadLine();
-
+               string[] output = Console.ReadLine().Split(" ");
+               foreach (Patient patient in hospital.output(output))
+                {
+                    Console.WriteLine(patient.name);
+                }
             } 
             break;
         default:
