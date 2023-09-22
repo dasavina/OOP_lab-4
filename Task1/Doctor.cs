@@ -2,7 +2,7 @@
 {
     string name { get; set; } = "none";
     string surname { get; set; } = "none";
-    List<Patient> patients { get; set; };
+    public List<Patient> patients { get; set; }
 
     public string GetPatients()
     {
