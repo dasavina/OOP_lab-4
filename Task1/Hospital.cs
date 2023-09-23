@@ -3,6 +3,8 @@
     public List<Department> departments { get; set; }
     public List<Doctor> doctors { get; set; }
 
+    public List<Patient> patients { get; set; }
+
     public void addPatient(string[] patientInfo)
     {
 
@@ -11,15 +13,16 @@
         Doctor doctor = new Doctor(patientInfo[1], patientInfo[2]);
 
         Patient patient = new Patient(patientInfo[3], doctor, department);
-        if (doctors.Any(y => y.patients.Any(x => x.name.Equals(patientInfo[3]))) || departments.Any(y => y.rooms.Any(x => x.patients.Any(z => z.name.Equals(patientInfo[3])))))
+        if (patients.Any(x=> x.Equals(patient)))
         {
             Console.WriteLine("patient is already included");
 
         }
         else
         {
+            patients.Add(patient);
 
-            int departmentIndex, doctorIndex;
+            int departmentIndex;
 
             if (!departments.Any(x => x.Name.Equals(patientInfo[0])))
             {
@@ -35,19 +38,6 @@
             if (departments[departmentIndex].canFit())
             {
                 departments[departmentIndex].firstToFitIn().patients.Add(patient);
-
-
-                if (!doctors.Any(x => x.Equals(doctor)))
-                {
-                    doctors.Add(doctor);
-                    doctorIndex = doctors.IndexOf(doctor);
-                }
-                else
-                {
-                    doctorIndex = doctors.IndexOf(doctors.Find(x => x.Equals(doctor)));
-                }
-                doctors[doctorIndex].patients.Add(patient);
-
             }
             else
             { Console.WriteLine("no space left"); }
@@ -61,11 +51,7 @@
         if (parameters.Length == 1)
         {
             Department forOutput = departments.Find(x => x.Name.Equals(parameters[0]));
-            for (int i = 0; i < forOutput.rooms.Count(); i++)
-            {
-                output.AddRange(forOutput.fromRoom(i));
-
-            }
+            output.AddRange(patients.FindAll(x => x.department.Equals(forOutput)));
         }
         else if (parameters[1].All(char.IsDigit))
         {
@@ -75,8 +61,8 @@
         }
         else
         {
-            Doctor forOutput = doctors.Find(x => x.name.Equals(parameters[0]) && x.surname.Equals(parameters[1]));
-            output.AddRange(forOutput.patients);
+            Doctor forOutput = new Doctor(parameters[0], parameters[1]);
+            output.AddRange(patients.FindAll(x => x.doctor.Equals(forOutput)));
             output.OrderBy(x => x.name);
         }
         return output;
