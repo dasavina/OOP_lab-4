@@ -16,16 +16,12 @@
     public void AddItem(Item item)
     { items.Add(item);}
 
-    public void SortAndRemove()
-    {
-        int goldCount, gemCount, cashCount;
-        //sort by Type; goldcount++; capacity-- till capacity is less than gold; continue the same with gems, add to if gemcount<=goldcount, same with cashcount
-    }
+    
 
     public List<string> printItems()
     {
         List<string> result  = new List<string>();
-        items.OrderBy(x => x.priority);
+        items.OrderBy(x => x.priority).ThenBy(x => x.value);
         int[] total = new int[3];
         total[0] = items[0].value;
         int totalcounter = 0;

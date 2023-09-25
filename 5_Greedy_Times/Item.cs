@@ -37,7 +37,7 @@
 class Gold : Item
 {
     public string name { get;} = "gold";
-    public int priority { get; } = 1;
+    public int priority { get; } = 3;
 
     public Gold(string name, int value) : base(name, value)
     { }
@@ -51,7 +51,7 @@ class Gem : Item
 
 class Cash : Item
 {
-    public int priority { get; } = 3;
+    public int priority { get; } = 1;
     public Cash(string name, int value) : base(name, value)
     { }
 }
