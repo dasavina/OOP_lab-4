@@ -3,22 +3,22 @@
     public string name {  get; set; }
     public int value {  get; set; }
     public int priority {  get; set; }
-    public Item getType(Item item)
+    public Item getType()
     {
-        if (item.name.Equals("gold", StringComparison.OrdinalIgnoreCase))
+        if ( name.Equals("gold", StringComparison.OrdinalIgnoreCase))
         {
-            Gold gold = new Gold(item.name, item.value);
+            Gold gold = new Gold(  name, value);
             return gold;
         }
-        else if (item.name.Length==3)
+        else if ( name.Length==3)
         {
-            Gem gem = new Gem(item.name, item.value);
+            Gem gem = new Gem(name, value);
             return gem;
 
         }
-        else if (item.name.EndsWith("gem", StringComparison.OrdinalIgnoreCase))
+        else if (name.EndsWith("gem", StringComparison.OrdinalIgnoreCase))
         {
-            Cash cash = new Cash(item.name, item.value);
+            Cash cash = new Cash(name, value);
             return cash;
         }
         else
