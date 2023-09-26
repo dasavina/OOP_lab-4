@@ -15,13 +15,12 @@ class IvoDiagonal : _3_Jedi_Galaxy.Diagonal
         {
             destroyed = evilDiagonal.Destroy(destroyed);
         }
-        for (int i = Convert.ToInt32( startingCoords[0]) +1; i<matrixLength; i++)
+        for (int i = Convert.ToInt32( startingCoords[0]) -1, j = Convert.ToInt32(startingCoords[1]) +1; j<matrixLength&&i>=0; i--, j++)
+            
         {
-            for (int j = Convert.ToInt32(startingCoords[1]) -1; j>=0; j--)
-            {
+            
                 if (!destroyed[i,j])
                 sum += i + (j * matrixLength);
-            }
         }
 
         return sum;
@@ -40,12 +39,11 @@ class IvoDiagonal : _3_Jedi_Galaxy.Diagonal
     public bool[,] Destroy(bool[,] destroyed)
     {
        
-        for (int i = Convert.ToInt32(startingCoords[0]) - 1; i < matrixLength; i++)
+        for (int i = Convert.ToInt32(startingCoords[0]) - 1, j = Convert.ToInt32(startingCoords[1]) - 1; j >= 0&& i >=0; j--, i--)
         {
-            for (int j = Convert.ToInt32(startingCoords[1]) - 1; j >= 0; j--)
-            {
+            
                 destroyed[i,j] = true;
-            }
+     
         }
         return destroyed;
 
