@@ -20,7 +20,7 @@ class IvoDiagonal : _3_Jedi_Galaxy.Diagonal
         {
             
                 if (!destroyed[i,j])
-                sum += i + (j * matrixLength);
+                sum += j + (i * matrixLength);
         }
 
         return sum;
