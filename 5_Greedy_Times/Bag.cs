@@ -27,7 +27,7 @@
                 goldCount += safeItems[i].value;
                 capacity -= safeItems[i].value;
             }
-            else if (safeItems[i].priority ==2 && (capacity -safeItems[i].value) > 0 && (gemCount + safeItems[i].value) <= goldCount)
+            else if (safeItems[i].priority ==2 && (capacity > safeItems[i].value) && (gemCount + safeItems[i].value) <= goldCount)
             {
                 items.Add(safeItems[i]);
                 gemCount += safeItems[i].value;
@@ -35,7 +35,7 @@
             }
             else
             {
-                if ((capacity - safeItems[i].value) > 0 && (cashCount + safeItems[i].value) <= gemCount)
+                if ((capacity  > safeItems[i].value) && (cashCount + safeItems[i].value) <= gemCount)
                 {
                     items.Add(safeItems[i]);
                     cashCount += safeItems[i].value;
