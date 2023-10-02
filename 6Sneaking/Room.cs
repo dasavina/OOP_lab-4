@@ -4,8 +4,9 @@
     public int height { get; set; }
     string[] room { get; set; }
     List<Enemy> enemies { get; set; }
-    Sam sam { get; set; }
-    Nikoladze n { get; set; }
+    public Sam sam { get; set; }
+    public Nikoladze n { get; set; }
+    
 
 
     public Room(string[] room)
@@ -29,11 +30,10 @@
 
     }
 
-    public void move(string command)
+    public void move(char command)
     {
-        for (int i = 0; i < command.Length; i++)
-        {
-            sam.Move(command[i]);
+        
+            sam.Move(command);
             foreach (Enemy enemy in enemies)
             {
                 if (enemy.col == 0 || enemy.col == width - 1)
@@ -44,12 +44,12 @@
                     if (enemy.row == sam.row)
                     {
                         if (enemy.col == sam.col) { enemies.Remove(enemy); }
-                        if (enemy.col < sam.col && enemy.rightDirection || enemy.col > sam.col && !enemy.rightDirection) { sam.die(); i = command.Length; break; }
+                        if (enemy.col < sam.col && enemy.rightDirection || enemy.col > sam.col && !enemy.rightDirection) { sam.die(); break; }
                     }
-                    else if (n.row == sam.row) { n.die(); i = command.Length; break; }
+                    else if (n.row == sam.row) { n.die(); break; }
                 }
             }
-        }
+       
 
     }
     public string[] returnRoom()

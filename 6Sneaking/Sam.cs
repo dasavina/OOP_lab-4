@@ -24,7 +24,7 @@
     public void die()
     {
         symbol = 'X';
-        Console.WriteLine("Sam died");
+        Console.WriteLine("Sam died at {0}, {1}", row, col);
     }
 
     public void Move(char command)
@@ -36,7 +36,7 @@
             case 'R': { col++; }; break;
             case 'L': { col--; }; break;
             case 'W': { }; break;
-            default: { }; break;
+            default: { "no such command, wait instead"; }; break;
 
         }
 
