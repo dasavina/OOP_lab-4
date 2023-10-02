@@ -20,10 +20,10 @@
             { sam = new Sam(i, room[i].IndexOf('S')); }
             else if (room[i].Contains('d'))
             { Enemy enemy = new Enemy(i, room[i].IndexOf('d'), 'd'); enemies.Add(enemy); }
-            else if (room[i].Contains("b"))
+            else if (room[i].Contains('b'))
             { Enemy enemy = new Enemy(i, room[i].IndexOf('b'), 'b'); enemies.Add(enemy); }
-            else if (room[i].Contains("N"))
-            { n = new Nikoladze(i); }
+            else if (room[i].Contains('N'))
+            { n = new Nikoladze(i, room[i].IndexOf('N')); }
         }
 
 
@@ -44,13 +44,29 @@
                     if (enemy.row == sam.row)
                     {
                         if (enemy.col == sam.col) { enemies.Remove(enemy); }
-                        if (enemy.col < sam.col && enemy.rightDirection || enemy.col > sam.col && !enemy.rightDirection) { sam.die(); }
+                        if (enemy.col < sam.col && enemy.rightDirection || enemy.col > sam.col && !enemy.rightDirection) { sam.die(); i = command.Length; break; }
                     }
-                    else if (n.row == sam.row) { n.die(); }
+                    else if (n.row == sam.row) { n.die(); i = command.Length; break; }
                 }
             }
         }
 
     }
-}
+    public string[] returnRoom()
+    {
+        string emptyRow = new string('.', width);
+        Array.Fill(room, emptyRow);
 
+        for (int i = 0; i < room.Length; i++)
+        {
+            if (enemies.Any(x => x.row == i))
+            { room[i].Replace(room[i][(enemies.Find(x => x.row == i).col)], enemies.Find(x => x.row == i).symbol); }
+            if (i == sam.row)
+            { room[i].Replace(room[i][sam.col], sam.symbol); }
+            if (i == n.row)
+            { room[i].Replace(room[i][n.col], n.symbol); }
+        }
+
+        return room;
+    }
+}

@@ -24,6 +24,7 @@
     public void die()
     {
         symbol = 'X';
+        Console.WriteLine("Sam died");
     }
 
     public void Move(char command)
