@@ -2,19 +2,19 @@
 {
     public int width { get; set; }
     public int height { get; set; }
-    string[] room {  get; set; }
+    string[] room { get; set; }
     List<Enemy> enemies { get; set; }
     Sam sam { get; set; }
-    Nikoladze n {  get; set; }
+    Nikoladze n { get; set; }
 
- 
+
     public Room(string[] room)
     {
         this.room = room;
         width = room[0].Length;
         height = room.Length;
 
-        for (int i = 0; i<room.Length; i++)
+        for (int i = 0; i < room.Length; i++)
         {
             if (room[i].Contains('S'))
             { sam = new Sam(i, room[i].IndexOf('S')); }
@@ -29,4 +29,28 @@
 
     }
 
+    public void move(string command)
+    {
+        for (int i = 0; i < command.Length; i++)
+        {
+            sam.Move(command[i]);
+            foreach (Enemy enemy in enemies)
+            {
+                if (enemy.col == 0 || enemy.col == width - 1)
+                { enemy.ChangeDirection(); }
+                else
+                {
+                    enemy.Move();
+                    if (enemy.row == sam.row)
+                    {
+                        if (enemy.col == sam.col) { enemies.Remove(enemy); }
+                        if (enemy.col < sam.col && enemy.rightDirection || enemy.col > sam.col && !enemy.rightDirection) { sam.die(); }
+                    }
+                    else if (n.row == sam.row) { n.die(); }
+                }
+            }
+        }
+
+    }
 }
+

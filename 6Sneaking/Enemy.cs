@@ -23,14 +23,9 @@
         
     }
 
-
-    public void die()
-    {
-        symbol = '.';
-    }
-
     public void Move()
     {
-
+        if (rightDirection) { col += 1; }
+        else { col -= 1; }
     }
 }
