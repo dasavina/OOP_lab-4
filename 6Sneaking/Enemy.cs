@@ -1,4 +1,4 @@
-﻿class Enemyb
+﻿class Enemy
 {
     public int row { get; set; }
     public int col { get; set; }
@@ -11,5 +11,10 @@
         { symbol = 'b'; }
         else { symbol = 'd'; }
         
+    }
+
+    public void KillSam()
+    {
+
     }
 }
