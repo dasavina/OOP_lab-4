@@ -5,6 +5,16 @@
     public bool rightDirection { get; set; }
     public char symbol { get; set; }
 
+    public Enemy(int row, int col, char symbol)
+    {
+        this.row = row;
+        this.col = col;
+        this.symbol = symbol;
+        if (symbol == 'b')
+        { rightDirection = true; }
+        else { rightDirection = false; }
+    }
+
     public void ChangeDirection()
     {
         if (rightDirection)
@@ -13,7 +23,13 @@
         
     }
 
-    public void KillSam()
+
+    public void die()
+    {
+        symbol = '.';
+    }
+
+    public void Move()
     {
 
     }

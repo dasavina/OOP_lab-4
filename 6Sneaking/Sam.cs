@@ -5,7 +5,14 @@
     public string[] commands { get; set; }
     public char symbol { get; set; } = 'S';
 
-   public void KillEnemy()
+    public Sam(int row, int col)
+    {
+        this.row = row;
+        symbol = 'S';
+        this.col = col;
+    }
+
+    public void KillEnemy()
     {
 
     }
@@ -13,5 +20,10 @@
     public void KillNikoladze()
     {
 
+    }
+
+    public void die()
+    {
+        symbol = 'X';
     }
 }
