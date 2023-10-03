@@ -2,23 +2,13 @@
 {
     public int row { get; set; }
     public int col { get; set; }
-    public char symbol { get; set; } = 'S';
+    public char symbol { get; set; }
 
     public Sam(int row, int col)
     {
         this.row = row;
         symbol = 'S';
         this.col = col;
-    }
-
-    public void KillEnemy()
-    {
-
-    }
-
-    public void KillNikoladze()
-    {
-
     }
 
     public void die()
@@ -36,7 +26,7 @@
             case 'R': { col++; }; break;
             case 'L': { col--; }; break;
             case 'W': { }; break;
-            default: { "no such command, wait instead"; }; break;
+            default: {Console.WriteLine( "no such command, wait instead"); }; break;
 
         }
 

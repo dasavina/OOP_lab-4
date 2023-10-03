@@ -13,8 +13,4 @@ for ( int i = 0;i < directions.Length; i++ )
     if (room.sam.symbol.Equals('X') || room.n.symbol.Equals('X')) break;
 }
 
-matrix = room.returnRoom();
-foreach (string s in matrix)
-{
-    Console.WriteLine(s);
-}
+room.returnRoom();

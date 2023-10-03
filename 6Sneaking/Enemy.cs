@@ -4,6 +4,7 @@
     public int col { get; set; }
     public bool rightDirection { get; set; }
     public char symbol { get; set; }
+    public bool dead {  get; set; }
 
     public Enemy(int row, int col, char symbol)
     {
@@ -13,6 +14,7 @@
         if (symbol == 'b')
         { rightDirection = true; }
         else { rightDirection = false; }
+        dead = false;
     }
 
     public void ChangeDirection()
@@ -23,9 +25,18 @@
         
     }
 
+    public void die ()
+    {
+        symbol = '.';
+        dead = true;
+    }
+
     public void Move()
     {
-        if (rightDirection) { col += 1; }
-        else { col -= 1; }
+        if (!dead)
+        {
+            if (rightDirection) { col += 1; }
+            else { col -= 1; }
+        }
     }
 }

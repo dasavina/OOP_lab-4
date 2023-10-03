@@ -3,7 +3,7 @@
 
     public int row { get; set; }
     public int col { get; set; }
-    public char symbol { get; set; } = 'N';
+    public char symbol { get; set; }
     public void die()
     {
         symbol = 'X';
