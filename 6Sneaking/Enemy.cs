@@ -19,10 +19,13 @@
 
     public void ChangeDirection()
     {
-        if (rightDirection)
-        { symbol = 'b'; }
-        else { symbol = 'd'; }
-        
+        if (!dead)
+        {
+            rightDirection = !rightDirection;
+            if (rightDirection)
+            { symbol = 'b'; }
+            else { symbol = 'd'; }
+        }
     }
 
     public void die ()
@@ -35,8 +38,10 @@
     {
         if (!dead)
         {
-            if (rightDirection) { col += 1; }
-            else { col -= 1; }
+            if (rightDirection) 
+            { col += 1; }
+            else 
+            { col -= 1; }
         }
     }
 }
